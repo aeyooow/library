@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="cards-container">
+  <!-- Display Book -->
+{% for card in book %}
+<div class="card-box">
+  <div class="card">
+    <div class="card-type" id="{{ card.card_type|lower }}">
+      <div class="card-image" id="{{ card.card_type|lower }}-img">
+        {% for book in book_data %}
+        {% if book.title == card.title %}
+            <img src="{{ book.image_url }}" alt="{{ book.name }} Image">
+        {% endif %}
+    {% endfor %}
+      </div>
+      <div class="card-name">
+        <h2 class="sbs">{{ card.title}}</h2>
+        <hr />
+      </div>
+      <div class="card-rarity">
+        <h3 class="rarity">ID:</h3>
+        <h3 class="rarity" id="rare-text">{{ card.book_id }}</h3>
+      </div>
+      <table class="card-stats">
+        <tbody>
+          <tr>
+            <th>Author:</th>
+            <td>{{ card.author }}</td>
+          </tr>
+          <tr>
+            <th>Genre:</th>
+            <td>{{ card.genre }}</td>
+          </tr>
+          <tr>
+            <th>Publisher:</th>
+            <td>{{ card.publisher }}</td>
+          </tr>
+          <tr>
+            <th>Year</th>
+            <td>{{ card.year }}</td>
+          </tr>
+        </tbody>
+      </table>
+    
+    <hr />
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  
+</section>
+{% endblock %}
+
+
+
+    
+      

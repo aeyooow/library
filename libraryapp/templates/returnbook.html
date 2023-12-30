@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!--TRAINERS-->
+<a href="{% url 'returnbook-add' %}" class="btn_add">New Returned Books</a><br>
+<section class="collection-container">
+  
+    <table class="styled-table">
+      <tbody>
+        <tr>
+          <th>Borrow Details</th>
+          <th>Return Date</th>
+         
+          <th>Action</th>
+
+        </tr>
+        {% for object in object_list %}
+        <tr>
+          <td>{{ object.borrowed }}</td>
+          <td>{{ object.return_date }} </td>
+          <td>
+            <a href="returnbook_list/{{ object.id }}" >Edit</a> |
+            <a href="returnbook_list/{{ object.id }}/delete" >Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+                <tr>
+                <td colspan="4" style="text-align: center;">
+                    <p>No Records Found</p>
+                </td>
+                </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+    
+    
+  </section>
+  <div>
+    {% include 'includes/pagination.html' %}
+  </div>
+   
+
+  
+  
+  
+{% endblock %}

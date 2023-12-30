@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="cards-container">
+  <!-- Display Book -->
+{% for card in librarian %}
+<div class="card-box">
+  <div class="card">
+    <div class="card-type" id="{{ card.card_type|lower }}">
+      <div class="card-image" id="{{ card.card_type|lower }}-img">
+        {% for librarian in librarian_data %}
+        {% if librarian.name == card.name %}
+            <img src="{{ librarian.image_url }}" alt="{{ librarian.name }} Image">
+        {% endif %}
+    {% endfor %}
+      </div>
+      <div class="card-name">
+        <h2 class="sbs">{{ card.name }}</h2>
+        <hr />
+      </div>
+      <div class="card-rarity">
+        <h3 class="rarity">Duty:</h3>
+        <h3 class="rarity" id="rare-text">{{ card.duty_day }}</h3>
+      </div>
+      <table class="card-stats">
+        <tbody>
+          <tr>
+            <th>Birthday:</th>
+            <td>{{ card.birthdate }}</td>
+          </tr>
+          <tr>
+            <th>Gender:</th>
+            <td>{{ card.gender }}</td>
+          </tr>
+        </tbody>
+      </table>
+    <hr />
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  
+</section>
+{% endblock %}
+
+
+
+    
+      
